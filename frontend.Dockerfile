@@ -1,11 +1,13 @@
 FROM node:18-alpine
 WORKDIR /app
 
-# Correction ici : on utilise uniquement le nouveau nom CICD-front
-COPY CICD-front/package.json CICD-front/package-lock.json ./
+# CORRECTION : On est DANS metier-front.
+# On ne met PAS 'CICD-front/' ni 'metier-front/'
+COPY package.json package-lock.json ./
 RUN npm install
 
-COPY CICD-front/ .
+# On copie tout le contenu courant (src, public, etc.)
+COPY . .
 
 EXPOSE 3000
 CMD ["npm", "start"]
