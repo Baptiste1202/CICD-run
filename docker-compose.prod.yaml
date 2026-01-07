@@ -1,0 +1,29 @@
+services:
+  backend:
+    image: cicd-run-backend:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - h2-data:/app/data
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:file:/app/data/demo
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  frontend:
+    image: cicd-run-frontend:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  h2-data:
