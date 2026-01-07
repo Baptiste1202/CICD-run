@@ -1,7 +1,7 @@
 services:
   backend:
     build:
-      context: ../metier-back
+      context: ../CICD-back
       dockerfile: ../CICD-run/backend.Dockerfile
     ports:
       - "8080:8080"
@@ -14,7 +14,7 @@ services:
 
   frontend:
     build:
-      context: ../metier-front
+      context: ../CICD-front
       dockerfile: ../CICD-run/frontend.Dockerfile
     ports:
       - "3000:3000"
